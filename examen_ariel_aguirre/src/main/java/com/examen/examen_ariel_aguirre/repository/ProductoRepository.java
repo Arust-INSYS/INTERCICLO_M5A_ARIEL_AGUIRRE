@@ -13,6 +13,6 @@ import org.springframework.data.jpa.repository.Query;
  * @author Usuario
  */
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
-    @Query(value = "Select * from producto a where p.codigo = :nombre", nativeQuery = true)
+    @Query(value = "Select * from producto a where p.codigo = :codigo", nativeQuery = true)
     public Producto buscarProducto(String codigo);
 }
