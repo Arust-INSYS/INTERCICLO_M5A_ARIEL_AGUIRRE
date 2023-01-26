@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -67,7 +68,12 @@ public class ProductoController {
     @PostMapping("/guardar")
     public ResponseEntity<Producto> SaveProduct(@RequestBody Producto p){
         try {
+            RedirectAttributes redirectAttrs=null;
+            redirectAttrs.addFlashAttribute("mensaje", "Agregado correctamente")
+            .addFlashAttribute("clase", "success");
             return new ResponseEntity<>(productoService.save(p), HttpStatus.CREATED);
+             
+            
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
